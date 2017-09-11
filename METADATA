@@ -1,0 +1,6 @@
+REPO:jwalter-1
+VERSION:0.1.1
+DESCRIPTION:Fixes accidental cd's to SSH hosts
+USE:
+HELP:
+HELP:
