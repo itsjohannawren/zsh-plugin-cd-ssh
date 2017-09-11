@@ -15,9 +15,9 @@ _sshGetHostname() {
 	fi
 
 	while [ "${#}" != "0" ]; do
-		if grep -qE "[${SSH_CLIENT_FLAGS}]" <<<"${1}"; then
+		if grep -qE "^[${SSH_CLIENT_FLAGS}]\$" <<<"${1:1}"; then
 			shift &>/dev/null
-		elif grep -qE "[${SSH_CLIENT_PARAMS}]" <<<"${1}"; then
+		elif grep -qE "^[${SSH_CLIENT_PARAMS}]\$" <<<"${1:1}"; then
 			shift &>/dev/null
 			shift &>/dev/null
 		elif grep -q '@' <<<"${1}"; then
@@ -55,6 +55,8 @@ cd() {
 		echo "Error: The hostname passed does not resolve to an A or AAAA record: ${*}" 1>&2
 		return 1
 	fi
+
+	echo "It looks like you meant 'ssh', not 'cd'. Let me help you with that..."
 
 	ssh "${@}"
 }
